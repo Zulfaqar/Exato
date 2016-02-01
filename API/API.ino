@@ -20,8 +20,8 @@
 #define ADAFRUIT_CC3000_CS    10
 
 // WiFi network (change with your settings !)
-#define WLAN_SSID       "FarisZul"        // cannot be longer than 32 characters!
-#define WLAN_PASS       "it178is356"
+#define WLAN_SSID       "TP-LINK"        // cannot be longer than 32 characters!
+#define WLAN_PASS       "passwordtooshort"
 #define WLAN_SECURITY   WLAN_SEC_WPA2 // This can be WLAN_SEC_UNSEC, WLAN_SEC_WEP, WLAN_SEC_WPA or WLAN_SEC_WPA2
 
 // Specify data and clock connections and instantiate SHT1x object
@@ -32,7 +32,7 @@ static char tempapi[10];
 static char tempvolt[10];
 
 //Sensor and Fan instances
-#define FAN 11
+
 int ledPower = 12;
 int samplingTime = 280;
 int deltaTime = 40;
@@ -40,14 +40,14 @@ int sleepTime = 9680;
 
 float voMeasured = 0;
 float calcVoltage = 0;
-
+int FAN = 7;
 
 // Create CC3000 & DHT instances
 
 Adafruit_CC3000 cc3000 = Adafruit_CC3000(ADAFRUIT_CC3000_CS, ADAFRUIT_CC3000_IRQ, ADAFRUIT_CC3000_VBAT,SPI_CLOCK_DIV2);
                                          
 // Local server IP, port, and repository (change with your settings !)
-uint32_t ip = cc3000.IP2U32(192,168,1,103);//your computers ip address
+uint32_t ip = cc3000.IP2U32(192,168,1,104);//your computers ip address
 int port = 80;//your webserver port (8888 is the default for MAMP)
 String repository = "/exato/";//the folder on your webserver where the sensor.php file is located
                                          
@@ -90,10 +90,10 @@ void loop(void)
     // 0 - 5.0V mapped to 0 - 1023 integer values 
     calcVoltage = (voMeasured*(5.0/1024.0)); 
 
-    if (voMeasured<50.00)
-    analogWrite(FAN,0);
+    if (voMeasured>50.00)
+    digitalWrite(FAN,HIGH);
   else
-    analogWrite(FAN,255);
+    digitalWrite(FAN,LOW);
     
   
     // Measure the humidity & temperature
@@ -108,28 +108,17 @@ void loop(void)
 //    String humidity = humidbuffer;
 //    humidity.trim();
 
-      
-     dtostrf(voMeasured,tempapi);
-     dtostrf(calcVoltage,tempvolt);
-
-     Serial.println("floatToString(api, voMeasured , 5);");
-     
-     String api = tempapi;
-     api.trim();
-     String voltage = tempvolt;
-     voltage.trim();
-
-
-    
     // Print data
     Serial.print("API: ");
-    Serial.println(api);
+    Serial.println(voMeasured);
     Serial.print("Voltage: ");
-    Serial.println(voltage);
+    Serial.println(calcVoltage);
     Serial.println("");
+
+     
     
     // Send request
-    String request = "GET "+ repository + "sensor.php?temp=" + api + "&hum=" + voltage + " HTTP/1.0";
+    String request = "GET "+ repository + "sensor.php?temp=" + voMeasured + "&hum=" + calcVoltage + " HTTP/1.0";
     send_request(request);
     Serial.println("");
     Serial.print("request: ");
