@@ -37,9 +37,9 @@ int FAN = 7;
 Adafruit_CC3000 cc3000 = Adafruit_CC3000(ADAFRUIT_CC3000_CS, ADAFRUIT_CC3000_IRQ, ADAFRUIT_CC3000_VBAT,SPI_CLOCK_DIV2);
                                          
 // Local server IP, port, and repository
-uint32_t ip = cc3000.IP2U32(192,168,1,104);//computers ip address
+uint32_t ip = cc3000.IP2U32(52,36,4,187);//computers ip address
 int port = 80; //webserver port 
-String repository = "/exato/";
+String repository = "ec2-52-36-4-187.us-west-2.compute.amazonaws.com/";
                                          
 void setup(void)
 {
