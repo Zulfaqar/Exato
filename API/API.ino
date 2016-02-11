@@ -39,7 +39,7 @@ Adafruit_CC3000 cc3000 = Adafruit_CC3000(ADAFRUIT_CC3000_CS, ADAFRUIT_CC3000_IRQ
 // Local server IP, port, and repository
 uint32_t ip = cc3000.IP2U32(52,36,4,187);//computers ip address
 int port = 80; //webserver port 
-String repository = "ec2-52-36-4-187.us-west-2.compute.amazonaws.com/";
+String repository = "http://ec2-52-36-4-187.us-west-2.compute.amazonaws.com/";
                                          
 void setup(void)
 {

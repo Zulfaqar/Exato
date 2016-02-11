@@ -6,7 +6,7 @@ by Tim Kang-->
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Exato</title>
+        <title>Exato 2.2</title>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
         <script type="text/javascript">
         $(document).ready(function() {

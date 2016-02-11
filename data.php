@@ -4,7 +4,7 @@
 //The original tutorial used for this code is from:
 //http://blueflame-software.com/blog/how-to-load-mysql-results-to-highcharts-using-json/
 //by Tim Kang
-$con = mysql_connect("exato-db-instance.cwbw53vhehej.us-west-2.rds.amazonaws.com","Zulfaqar", "");
+$con = mysql_connect("exato-db-instance.cwbw53vhehej.us-west-2.rds.amazonaws.com","Zulfaqar", "94025467z");
 
 if (!$con) {
   die('Could not connect: ' . mysql_error());
