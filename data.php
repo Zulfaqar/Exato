@@ -1,16 +1,13 @@
 <?php
-//this file collects the data from the energy_project database and puts it into 3 specially formated 
-//data arrays that can be read by highcharts
-//The original tutorial used for this code is from:
-//http://blueflame-software.com/blog/how-to-load-mysql-results-to-highcharts-using-json/
-//by Tim Kang
-$con = mysql_connect("exato-db-instance.cwbw53vhehej.us-west-2.rds.amazonaws.com","Zulfaqar", "94025467z");
+//$con = mysql_connect("exato-db-instance.cwbw53vhehej.us-west-2.rds.amazonaws.com","Zulfaqar", "94025467z");
+$con = mysql_connect("localhost","root", "");
 
 if (!$con) {
   die('Could not connect: ' . mysql_error());
 }
 
-mysql_select_db("exato_database", $con);
+//mysql_select_db("exato_database", $con);
+mysql_select_db("energy_project", $con);
 
 $sth = mysql_query("SELECT value FROM readings where sensor='pool_temp'");
 $rows = array();
