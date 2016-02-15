@@ -18,7 +18,7 @@ by Tim Kang-->
                     marginBottom: 25
                 },
                 title: {
-                    text: 'Temp Humidity Pool',
+                    text: 'API Reading Pool',
                     x: -20 //center
                 },
                 subtitle: {
