@@ -1,13 +1,13 @@
 <?php
-//$con = mysql_connect("exato-db-instance.cwbw53vhehej.us-west-2.rds.amazonaws.com","Zulfaqar", "94025467z");
-$con = mysql_connect("localhost","root", "");
+$con = mysql_connect("exato-db-instance.cwbw53vhehej.us-west-2.rds.amazonaws.com","Zulfaqar", "94025467z");
+//$con = mysql_connect("localhost","root", "");
 
 if (!$con) {
   die('Could not connect: ' . mysql_error());
 }
 
-//mysql_select_db("exato_database", $con);
-mysql_select_db("energy_project", $con);
+mysql_select_db("exato_database", $con);
+//mysql_select_db("energy_project", $con);
 
 $sth = mysql_query("SELECT value FROM readings where sensor='pool_temp'");
 $rows = array();

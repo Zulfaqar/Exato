@@ -1,7 +1,3 @@
-<!--this file displays the data from the energy_project database.
-The original tutorial used for this code is from:
-http://blueflame-software.com/blog/how-to-load-mysql-results-to-highcharts-using-json/
-by Tim Kang-->
 <!DOCTYPE HTML>
 <html>
     <head>
