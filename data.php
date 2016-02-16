@@ -11,14 +11,14 @@ mysql_select_db("energy_project", $con);
 
 $sth = mysql_query("SELECT value FROM readings where sensor='pool_temp'");
 $rows = array();
-$rows['name'] = 'Temperature';
+$rows['name'] = 'Air Quality';
 while($r = mysql_fetch_array($sth)) {
     $rows['data'][] = $r['value'];
 }
 
 $sth = mysql_query("SELECT value FROM readings where sensor='pool_hum'");
 $rows1 = array();
-$rows1['name'] = 'Humidity';
+$rows1['name'] = 'Voltage';
 while($rr = mysql_fetch_assoc($sth)) {
     $rows1['data'][] = $rr['value'];
 }
