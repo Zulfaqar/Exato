@@ -9,7 +9,7 @@
             var options = {
                 chart: {
                     renderTo: 'container',
-                    type: 'line',
+                    type: 'spline',
                     marginRight: 130,
                     marginBottom: 25
                 },
