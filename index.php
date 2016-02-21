@@ -2,7 +2,10 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Exato</title>
+        <title>Real Time API Regulator</title>
+          <!-- Boostrap and JQuery-->
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
         <script type="text/javascript">
         $(document).ready(function() {
@@ -67,8 +70,19 @@
         <script src="http://code.highcharts.com/modules/exporting.js"></script>
     </head>
     <body>
-        <h1> Welcome to Exato! </h1>
-        <p> if you're seeing this, this site is still under constructions
-        <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+      <div class="row">  
+   
+           <p class="text-center"> 
+                <h1>Welcome to Exato!
+                <small>if you're seeing this, this site is still under constructions</small>
+                </h1>
+            </p>
+    </div>
+  
+            <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+
+    
+        
+        
     </body>
 </html>
