@@ -115,10 +115,10 @@ void loop(void)
       lcd.setCursor(1,0);
       lcd.print("API: ");
       lcd.println(voMeasured);
+      lcd.print("μg/m3");
 
       lcd.setCursor(1,1);
       lcd.print("Good Condition");
-      lcd.println(calcVoltage);
 
       Serial.print("API: ");
       Serial.println(voMeasured);
@@ -129,6 +129,7 @@ void loop(void)
       lcd.setCursor(1,0);
       lcd.print("API: ");
       lcd.println(voMeasured);
+      lcd.print("μg/m3");
 
       lcd.setCursor(1,1);
       lcd.print("Moderate Air");
@@ -142,6 +143,7 @@ void loop(void)
       lcd.setCursor(1,0);
       lcd.print("API: ");
       lcd.println(voMeasured);
+      lcd.print("μg/m3");
 
       lcd.setCursor(1,1);
       lcd.print("Unhealthy Air");
@@ -155,6 +157,7 @@ void loop(void)
       lcd.setCursor(1,0);
       lcd.print("API: ");
       lcd.println(voMeasured);
+      lcd.print("μg/m3");
 
       lcd.setCursor(1,1);
       lcd.print("Very Unhealthy Air");
@@ -168,6 +171,7 @@ void loop(void)
       lcd.setCursor(1,0);
       lcd.print("API: ");
       lcd.println(voMeasured);
+      lcd.print("μg/m3");
 
       lcd.setCursor(1,1);
       lcd.print("Hazardous Air");
@@ -181,7 +185,7 @@ void loop(void)
      
     
     //Send request
-    String request = "GET "+ repository + "sensor.php?tep=" + voMeasured + "&hm=" + calcVoltage + " HTTP/1.0";
+    String request = "GET "+ repository + "sensor.php?temp=" + voMeasured + "&hum=" + calcVoltage + " HTTP/1.0";
     send_request(request);
     Serial.println("");
     Serial.print("request: ");
