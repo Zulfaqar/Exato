@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="en">
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>Real Time API Regulator</title>
           <!-- Boostrap and JQuery-->
@@ -70,19 +71,66 @@
         <script src="http://code.highcharts.com/modules/exporting.js"></script>
     </head>
     <body>
-      <div class="row">  
-   
-           <p class="text-center"> 
-                <h1>Welcome to Exato!
-                <small>if you're seeing this, this site is still under constructions</small>
-                </h1>
-            </p>
+        <div class="container">
+ 
+    <div class="row">
+        <div class="col-sm-12">
+            <h1 class="text-center">
+                Real-Time API Regulator
+            </h1>
+                <div class="alert alert-danger text-center" role="alert">
+                <span class="glyphicon glyphicon-alert" aria-hidden="true"></span><b> Warning!</b> if you're seeing this, this site is still under constructions.
+                </div>
+            
+        </div>
     </div>
+            <div class="row">
+                <div class="col-sm-3 text-center">
+                    <div>
+                    Monday, Feb 22, 12:27PM 
+                    </div>
+                    <div>
+                    <h4>Highest API</h4>
+                    </div>
+                    <div class="alert alert-danger">
+                        <h4><b>524.10 </b>µg/m³</h4>
+                        <div><b>Hazardous</b></div>
+                    </div>
+                    <div class="alert alert-danger">
+                        <h4><b>524.10 </b>µg/m³</h4>
+                         <div><b>Very Unhealthy</b></div>
+                    </div>
+                    <div class="alert alert-warning">
+                        <h4><b>186.32 </b>µg/m³</h4>
+                         <div><b>Unhealthy</b></div>
+                    </div>
+                    <div class="alert alert-warning">
+                        <h4><b>94.40 </b>µg/m³</h4>
+                         <div><b>Moderate</b></div>
+                    </div>
+                    <div class="alert alert-success">
+                        <h4><b>40.10 </b>µg/m³</h4>
+                         <div><b>Good</b></div>
+                    </div>
+                </div>
+                <div class="col-sm-3 text-center">
+                    <div><b>Good</b></div>
+                    <div><b>Good</b></div>
+                    <div><b>Good</b></div>
+                    <div><b>Good</b></div>
+                    
+                    
+                </div>
+                <div class="col-sm-6">
+                    <div id="container" style="min-width: 400px; height: 250px; margin: 0 auto"></div>
+                </div>
+                
+            </div>
   
-            <div id="container" style="min-width: 400px; height: 400px; margin: 0 auto"></div>
+            
 
     
         
-        
+</div>
     </body>
 </html>
