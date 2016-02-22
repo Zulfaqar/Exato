@@ -114,10 +114,12 @@
                     </div>
                 </div>
                 <div class="col-sm-3 text-center">
-                    <div><b>Good</b></div>
-                    <div><b>Good</b></div>
-                    <div><b>Good</b></div>
-                    <div><b>Good</b></div>
+                    <div>Voltage
+                        <div><h4>4.29V</h4></div>
+                    </div>
+                    <div><b>2nd Good</b></div>
+                    <div><b>3rd Good</b></div>
+                    <div><b>4th Good</b></div>
                     
                     
                 </div>
