@@ -1,4 +1,5 @@
 <!DOCTYPE HTML>
+<?php date_default_timezone_set("Asia/Kuala_Lumpur"); ?>
 <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -87,10 +88,10 @@
             <div class="row">
                 <div class="col-sm-3 text-center">
                     <div>
-                    Monday, Feb 22, 12:27PM 
+                    <?php echo date("F j, Y, g:i A")?> 
                     </div>
                     <div>
-                    <h4>Highest API</h4>
+                    <h4>Current API</h4>
                     </div>
                     <div class="alert alert-danger">
                         <h4><b>524.10 </b>µg/m³</h4>
@@ -113,13 +114,23 @@
                          <div><b>Good</b></div>
                     </div>
                 </div>
-                <div class="col-sm-3 text-center">
-                    <div>Voltage
-                        <div><h4>4.29V</h4></div>
+                <div class="col-sm-3 text-left">
+                     <div><h4><small><b>Highest API</b></small>
+                        <div>535.32 µg/m³</div>
+                        <div><small>Thursday, Feb 25, 02:27PM </small></div></h4>
                     </div>
-                    <div><b>2nd Good</b></div>
-                    <div><b>3rd Good</b></div>
-                    <div><b>4th Good</b></div>
+                    <div><h4><small><b>7 Days Avg API</b> </small>
+                        <div>235.32 µg/m³</div>
+                        <div><small>(27/11/2015 - 04/12/15)</small></div></h4>
+                    </div>
+                    <div><h4><small><b>30 Days Avg API</b> </small>
+                        <div>40.17 µg/m³</div>
+                        <div><small>(01/11/2015 - 01/12/15)</small></div></h4>
+                    </div>
+                   <div><h4><small><b>Overview</b> </small>
+                        <div>0.16% <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></div>
+                        <div><small>Slightly cleaner air from previous week</small></div></h4>
+                    </div>
                     
                     
                 </div>
