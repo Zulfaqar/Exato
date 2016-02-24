@@ -89,15 +89,14 @@
             <div class="row">
                 <div class="col-sm-3 text-center">
                     <div>
-                    <?php echo date("F j, Y, g:i A"); 
-                   
-echo $result['data'];?> 
+                    <?php echo date("F j, Y, g:i A"); ?>
+                 
                     </div>
                     <div>
                     <h4>Current API</h4>
                     </div>
                     <div class="alert alert-danger">
-                        <h4><b>524.10 </b>µg/m³</h4>
+                        <h4><b><?php echo $result['data'];?></b> µg/m³</h4>
                         <div><b>Hazardous</b></div>
                     </div>
                     <div class="alert alert-danger">
