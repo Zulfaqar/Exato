@@ -1,5 +1,6 @@
 <!DOCTYPE HTML>
-<?php date_default_timezone_set("Asia/Kuala_Lumpur"); ?>
+<?php date_default_timezone_set("Asia/Kuala_Lumpur");?>
+<div style="display:none;"><?php include 'data_prep.php'; ?></div>
 <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
@@ -88,7 +89,9 @@
             <div class="row">
                 <div class="col-sm-3 text-center">
                     <div>
-                    <?php echo date("F j, Y, g:i A")?> 
+                    <?php echo date("F j, Y, g:i A"); 
+                   
+echo $result['data'];?> 
                     </div>
                     <div>
                     <h4>Current API</h4>
