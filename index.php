@@ -1,14 +1,19 @@
 <!DOCTYPE HTML>
 <?php date_default_timezone_set("Asia/Kuala_Lumpur");?>
-<div style="display:none;"><?php include 'data_prep.php'; ?></div>
+<!--<div style="display:none;">-->
+    <?php include 'data_prep.php'; ?>
+<!--</div>-->
 <html lang="en">
     <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <title>Real Time API Regulator</title>
           <!-- Boostrap and JQuery-->
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+            <link href="css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+            <link href="css/flat-ui.min.css" rel="stylesheet" type="text/css"/>
+       
+          <script src="js/flat-ui.min.js" type="text/javascript"></script>
+
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
         <script type="text/javascript">
         $(document).ready(function() {
@@ -89,49 +94,61 @@
             <div class="row">
                 <div class="col-sm-3 text-center">
                     <div>
-                    <?php echo date("F j, Y, g:i A"); ?>
+                    <?php echo $result['date'];
+                     date("F j, Y, g:i A"); ?>
                  
                     </div>
                     <div>
                     <h4>Current API</h4>
                     </div>
+                    <?php if($result['data']>301){ ?>
                     <div class="alert alert-danger">
-                        <h4><b><?php echo $result['data'];?></b> µg/m³</h4>
+                        <h4><b>
+                            <?php echo $result['data'];?>
+                            </b> µg/m³</h4>
                         <div><b>Hazardous</b></div>
                     </div>
+                    <?php } else if(($result['data']<300)&&($result['data']>201)){ ?>
                     <div class="alert alert-danger">
-                        <h4><b>524.10 </b>µg/m³</h4>
+                        <h4><b><?php echo $result['data'];?> </b>µg/m³</h4>
                          <div><b>Very Unhealthy</b></div>
                     </div>
+                    <?php } 
+                    else if(($result['data']<200)&&($result['data']>101)){?>
                     <div class="alert alert-warning">
-                        <h4><b>186.32 </b>µg/m³</h4>
+                        <h4><b><?php echo $result['data'];?> </b>µg/m³</h4>
                          <div><b>Unhealthy</b></div>
                     </div>
+                    <?php } 
+                    else if(($result['data']<100)&&($result['data']>51)){?>
                     <div class="alert alert-warning">
-                        <h4><b>94.40 </b>µg/m³</h4>
+                        <h4><b>><?php echo $result['data'];?> </b>µg/m³</h4>
                          <div><b>Moderate</b></div>
                     </div>
+                    <?php } 
+                    else if(($result['data']<50)&&($result['data']>0)){?>
                     <div class="alert alert-success">
-                        <h4><b>40.10 </b>µg/m³</h4>
+                        <h4><b><?php echo $result['data'];?> </b>µg/m³</h4>
                          <div><b>Good</b></div>
                     </div>
+                    <?php } ?>
                 </div>
                 <div class="col-sm-3 text-left">
-                     <div><h4><small><b>Highest API</b></small>
+                     <div><h6><b>Highest API</b>
                         <div>535.32 µg/m³</div>
-                        <div><small>Thursday, Feb 25, 02:27PM </small></div></h4>
+                        <div><small>Thursday, Feb 25, 02:27PM </small></div></h6>
                     </div>
-                    <div><h4><small><b>7 Days Avg API</b> </small>
+                    <div><h6><b>7 Days Avg API</b>
                         <div>235.32 µg/m³</div>
-                        <div><small>(27/11/2015 - 04/12/15)</small></div></h4>
+                        <div><small>(27/11/2015 - 04/12/15)</small></div></h6>
                     </div>
-                    <div><h4><small><b>30 Days Avg API</b> </small>
+                    <div><h6><b>30 Days Avg API</b>
                         <div>40.17 µg/m³</div>
-                        <div><small>(01/11/2015 - 01/12/15)</small></div></h4>
+                        <div><small>(01/11/2015 - 01/12/15)</small></div></h6>
                     </div>
-                   <div><h4><small><b>Overview</b> </small>
+                   <div><h6><b>Overview</b>
                         <div>0.16% <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></div>
-                        <div><small>Slightly cleaner air from previous week</small></div></h4>
+                        <div><small>Slightly cleaner air from previous week</small></div></h6>
                     </div>
                     
                     

@@ -11,13 +11,12 @@ mysql_select_db("exato_database", $con);
 
 $query = mysql_query(" SELECT 
                     ifnull(round(value,2),0.00) AS api_value,
-                    ifnull(DATE_FORMAT(time_stamp,'%d-%b'),0) as daily_date
-                    
-                FROM readings
-               
-                WHERE 
+                    time_stamp AS daily_date
+                    FROM readings
+                    WHERE 
                     sensor = 'pool_temp'
-                    -- AND time_stamp = current_time() ");
+                    
+                     ORDER BY time_stamp DESC ");
 $result = array();
 while($row = mysql_fetch_array($query)) {
     $result['data']= $row['api_value'];
