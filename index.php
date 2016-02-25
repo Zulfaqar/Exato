@@ -131,7 +131,7 @@
                         <h4><b><?php echo $result['data'];?> </b>µg/m³</h4>
                          <div><b>Good</b></div>
                     </div>
-                    <?php } ?>
+                    <?php }?>
                 </div>
                 <div class="col-sm-3 text-left">
                      <div><h6><b>Highest API</b>
