@@ -7,35 +7,52 @@
 <!--</div>-->
 <html lang="en">
     <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Real Time API Regulator</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <title>Real Time API</title>
           <!-- Boostrap and JQuery-->
             <link href="css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
             <link href="css/flat-ui.min.css" rel="stylesheet" type="text/css"/>
-       
-          <script src="js/flat-ui.min.js" type="text/javascript"></script>
+            <script src="js/flat-ui.min.js" type="text/javascript"></script>
 
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
         <script type="text/javascript">
         $(document).ready(function() {
             $('#container').highcharts({
-                 legend: {
+        legend: {
+            enabled: false
+        },
+        exporting: {
             enabled: false
         },
         chart: {
-            type: 'area'
+            type: 'area',
+             backgroundColor:null
         },
         title: {
-            text: 'Air Quality Index Pool'
+            text: 'Air Quality Index Pool',
+             style: {
+                color: '#ecf0f1',
+                fontWeight: 'bold'
+            },
+            
         },
         subtitle: {
-            text: 'Powered by Arduino Uno R3'
+            text: 'Powered by Arduino Uno R3',
+            style: {
+                color: '#bdc3c7',
+            }
         },
          xAxis: {
              labels:{enabled: false},
              title:{
-                 text: 'Time'
+                 text: 'Time',
+                 style: {
+                color: '#bdc3c7',
+                fontWeight: 'bold'
+            },
              },
              
                 categories: [ <?php foreach ($chart['api_date'] as $value) {
@@ -47,10 +64,16 @@
                 },
         yAxis: {
             title: {
-                text: 'Index'
+                text: 'Index',
+                style: {
+                    color: '#bdc3c7',  
+                },
             },
             labels: {
-                format: '{value:.2f} µg/m³'
+                format: '{value:.2f} µg/m³',
+                 style: {
+                    color: '#ecf0f1',  
+                },
             },
            
             
@@ -103,76 +126,124 @@
         <script src="http://code.highcharts.com/highcharts.js"></script>
         <script src="http://code.highcharts.com/modules/exporting.js"></script>
     </head>
-    <body>
-        <div class="container">
+    <!--<body class="container-fluid bg-background">-->
+    <body class="container-new bg-background">
  
-    <div class="row">
-        <div class="col-sm-12">
-            <h1 class="text-center">
-                Real-Time API Regulator
-            </h1>
-                <div class="alert alert-danger text-center" role="alert">
-                <span class="glyphicon glyphicon-alert" aria-hidden="true"></span><b> Warning!</b> if you're seeing this, this site is still under constructions.
-                </div>
-            
+   <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header"> 
+          <a class="navbar-brand" href="#"><span class="fui-yelp"></span> Air Pollution | Real-time API Monitor </a>
         </div>
-    </div>   
-            <div class="row">
-                <div class="col-sm-3 text-center">
-                    <div>
-                        <h7><?php echo $result['date']; ?>
-                            <b>Current API<b></h7>
-                    </div>
-                    <?php if($result['data']>301){ ?>
-                    <div class="alert alert-danger">
-                        <h4><b>
-                            <?php echo $result['data'];?>
-                            </b> µg/m³</h4>
-                        <div><b>Hazardous</b></div>
+      </div>
+    </nav>
+
+            
+
+            
+            <div class="alert alert-warning text-center container" role="alert">
+                <span class="fui-alert-circle" aria-hidden="true"></span><b> Warning!</b> if you're seeing this, this site is still under constructions.
+            </div>
+        
+            <div class="row container-fluid">
+                <div class=" col-sm-3 text-center">
+            <div class="todo">
+            <ul>
+              <li>
+                <div class="todo-icon fui-user"></div>
+                <div class="todo-content">
+                  <h4 class="todo-name">
+                     Current API 
+                      
+                  </h4>
+                    <?php echo $result['date']; ?>
+                </div>
+              </li>
+            </ul>
+            </div>
+                    
+                    <?php if($result['data']>=301){ ?>
+                    <div class="btn btn-block btn-lg btn-danger">
+                       <h6><b><?php echo $result['data'];?> µg/m³</b> 
+                            <div>Hazardous</div>
+                        </h6>
                     </div>
                     <?php } else if(($result['data']<300)&&($result['data']>201)){ ?>
-                    <div class="alert alert-danger">
-                        <h4><b><?php echo $result['data'];?> </b>µg/m³</h4>
-                         <div><b>Very Unhealthy</b></div>
+                    <div class="btn btn-block btn-lg btn-veryunhealthy">
+                        <h6><b><?php echo $result['data'];?> µg/m³</b> 
+                            <div>Very Unhealthy</div>
+                        </h6>
                     </div>
                     <?php } 
                     else if(($result['data']<200)&&($result['data']>101)){?>
-                    <div class="alert alert-warning">
-                        <h4><b><?php echo $result['data'];?> </b>µg/m³</h4>
-                         <div><b>Unhealthy</b></div>
+                    <div class="btn btn-block btn-lg btn-unhealthy">
+                        <h6><b><?php echo $result['data'];?> µg/m³</b> 
+                            <div>Unhealthy</div>
+                        </h6>
                     </div>
                     <?php } 
                     else if(($result['data']<100)&&($result['data']>51)){?>
-                    <div class="alert alert-warning">
-                        <h4><b>><?php echo $result['data'];?> </b>µg/m³</h4>
-                         <div><b>Moderate</b></div>
+                    <div class="btn btn-block btn-lg btn-warning">
+                        <h6><b><?php echo $result['data'];?> µg/m³</b> 
+                            <div>Moderate</div>
+                        </h6>
                     </div>
                     <?php } 
                     else if(($result['data']<50)&&($result['data']>0)){?>
-                    <div class="alert alert-success">
-                        <h4><b><?php echo $result['data'];?> </b>µg/m³</h4>
-                         <div><b>Good</b></div>
+                    <div class="btn btn-block btn-lg btn-success">
+                        
+                        <h6><b><?php echo $result['data'];?> µg/m³</b> 
+                            <div>Good</div>
+                        </h6>
+                        
                     </div>
                     <?php }?>
                 </div>
-                <div class="col-sm-3 text-left">
-                     <div><h6><b>Highest API</b>
-                        <div>535.32 µg/m³</div>
-                        <div><small>Thursday, Feb 25, 02:27PM </small></div></h6>
-                    </div>
-                    <div><h6><b>7 Days Avg API</b>
-                        <div>235.32 µg/m³</div>
-                        <div><small>(27/11/2015 - 04/12/15)</small></div></h6>
-                    </div>
-                    <div><h6><b>30 Days Avg API</b>
-                        <div>40.17 µg/m³</div>
-                        <div><small>(01/11/2015 - 01/12/15)</small></div></h6>
-                    </div>
-                   <div><h6><b>Overview</b>
-                        <div>0.16% <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span></div>
-                        <div><small>Slightly cleaner air from previous week</small></div></h6>
-                    </div>
-                    
+                
+                <div class=" col-sm-3 text-left">
+            <div class="todo">
+            <ul>
+              <li>
+                <div class="todo-icon fui-user"></div>
+                <div class="todo-content">
+                  <h4 class="todo-name">
+                      Highest API 
+                      <div><strong>35.32 µg/m³</strong></div> 
+                  </h4>
+                   Thursday, Feb 25, 02:27PM
+                </div>
+              </li>
+              <li>
+                <div class="todo-icon fui-list"></div>
+                <div class="todo-content">
+                  <h4 class="todo-name">
+                      7 Days Avg API 
+                      <div><strong>35.32 µg/m³</strong></div> 
+                  </h4>
+                   (27/11/2015 - 04/12/15)
+                </div>
+              </li>
+              <li>
+                <div class="todo-icon fui-eye"></div>
+                <div class="todo-content">
+                  <h4 class="todo-name">
+                     30 Days Avg API 
+                      <div><strong>35.32 µg/m³</strong></div> 
+                  </h4>
+                   (01/11/2015 - 01/12/15)
+                </div>
+              </li>
+              <li>
+                <div class="todo-icon fui-time"></div>
+                <div class="todo-content">
+                  <h4 class="todo-name">
+                     Overview 
+                      <div><strong>0.16%</strong></div> 
+                  </h4>
+                   Slightly cleaner air from previous week
+                </div>
+              </li>
+            </ul>
+          </div><!-- /.todo -->
                     
                 </div>
                 <div class="col-sm-6">
@@ -180,11 +251,12 @@
                 </div>
                 
             </div>
+              
   
-            
-
-    
         
-</div>
+
+        
+      
     </body>
 </html>
+
