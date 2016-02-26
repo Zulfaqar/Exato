@@ -1,7 +1,9 @@
 <!DOCTYPE HTML>
 <?php date_default_timezone_set("Asia/Kuala_Lumpur");?>
 <!--<div style="display:none;">-->
-    <?php include 'data_prep.php'; ?>
+    <?php include 'data.php';
+    include 'data_prep.php';
+     ?>
 <!--</div>-->
 <html lang="en">
     <head>
@@ -17,62 +19,86 @@
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
         <script type="text/javascript">
         $(document).ready(function() {
-            var options = {
-                chart: {
-                    renderTo: 'container',
-                    type: 'spline',
-                    marginRight: 130,
-                    marginBottom: 25
+            $('#container').highcharts({
+                 legend: {
+            enabled: false
+        },
+        chart: {
+            type: 'area'
+        },
+        title: {
+            text: 'Air Quality Index Pool'
+        },
+        subtitle: {
+            text: 'Powered by Arduino Uno R3'
+        },
+         xAxis: {
+             labels:{enabled: false},
+             title:{
+                 text: 'Time'
+             },
+             
+                categories: [ <?php foreach ($chart['api_date'] as $value) {
+                                        echo "'".$value."',";
+                                    } ?>],
+                crosshair:false,
+                type: 'datetime',
+                tickInterval: 1,
                 },
-                title: {
-                    text: 'API Reading Pool',
-                    x: -20 //center
-                },
-                subtitle: {
-                    text: '',
-                    x: -20
-                },
-                 global: {
-                useUTC: false
+        yAxis: {
+            title: {
+                text: 'Index'
             },
-            xAxis: {
-            type: 'datetime',
-            tickInterval: 3600, // one week
-               labels: {
-                format: '{value: %H:%M}',
-                align: 'right'
-                //rotation: -30
-            } },
+            labels: {
+                format: '{value:.2f} µg/m³'
+            },
            
-                yAxis: {
-                    title: {
-                        text: 'Amount'
-                    },
-                    plotLines: [{
-                        value: 0,
-                        width: 1,
-                        color: '#808080'
-                    }]
-                },
-                
-                legend: {
-                    layout: 'vertical',
-                    align: 'right',
-                    verticalAlign: 'top',
-                    x: -10,
-                    y: 100,
-                    borderWidth: 0
-                },
-                series: []
-            }
             
-            $.getJSON("data.php", function(json) {
-                options.xAxis.categories = json[0]['data'];
-                options.series[0] = json[1];
-                options.series[1] = json[2];
-                chart = new Highcharts.Chart(options);
-            });
-        });
+        },
+        tooltip: {
+            pointFormat: '{series.name} Index <b>{point.y:,.2f} µg/m³</b>',
+        },
+        plotOptions: {
+            area: {
+               
+                marker: {
+                    fillColor: '#34495e',
+                    enabled: false,
+                    symbol: 'circle',
+                    radius: 4,
+                    states: {
+                        hover: {
+                            enabled: true
+                        }
+                    }
+                }
+            }
+        },
+        series: [{
+            color:'#c0392b',
+            name: 'API',
+            data: [
+                <?php 
+                    foreach ($chart['api'] as $value) {
+                        echo $value.",";
+                    }
+                ?>],
+            zones: [{
+                    value: 50.00,
+                    color: '#2ecc71'
+                 }, {
+                    value: 100.00,
+                    color: '#f1c40f'
+                 }, {
+                    value: 200.00,
+                    color: '#e67e22'
+                 },{
+                    value: 300.00,
+                    color: '#c0392b'
+                 }]
+        }]
+    });
+});
         </script>
         <script src="http://code.highcharts.com/highcharts.js"></script>
         <script src="http://code.highcharts.com/modules/exporting.js"></script>
@@ -90,16 +116,12 @@
                 </div>
             
         </div>
-    </div>
+    </div>   
             <div class="row">
                 <div class="col-sm-3 text-center">
                     <div>
-                    <?php echo $result['date'];
-                     date("F j, Y, g:i A"); ?>
-                 
-                    </div>
-                    <div>
-                    <h4>Current API</h4>
+                        <h7><?php echo $result['date']; ?>
+                            <b>Current API<b></h7>
                     </div>
                     <?php if($result['data']>301){ ?>
                     <div class="alert alert-danger">
