@@ -1,5 +1,8 @@
 <!DOCTYPE HTML>
-<?php date_default_timezone_set("Asia/Kuala_Lumpur");?>
+<?php date_default_timezone_set("Asia/Kuala_Lumpur");
+$page = $_SERVER['PHP_SELF'];
+$sec = "10";
+?>
 <!--<div style="display:none;">-->
     <?php include 'data.php';
     include 'data_prep.php';
@@ -10,12 +13,14 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
         
         <title>Real Time API</title>
           <!-- Boostrap and JQuery-->
             <link href="css/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
             <link href="css/flat-ui.min.css" rel="stylesheet" type="text/css"/>
             <script src="js/flat-ui.min.js" type="text/javascript"></script>
+            
 
         <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
         <script type="text/javascript">
@@ -149,7 +154,7 @@
             <div class="todo">
             <ul>
               <li>
-                <div class="todo-icon fui-user"></div>
+                 <div class="todo-icon fui-time"></div>
                 <div class="todo-content">
                   <h4 class="todo-name">
                      Current API 
@@ -203,7 +208,7 @@
             <div class="todo">
             <ul>
               <li>
-                <div class="todo-icon fui-user"></div>
+                <div class="todo-icon fui-clip"></div>
                 <div class="todo-content">
                   <h4 class="todo-name">
                       Highest API 
@@ -213,7 +218,7 @@
                 </div>
               </li>
               <li>
-                <div class="todo-icon fui-list"></div>
+                <div class="todo-icon fui-list-thumbnailed"></div>
                 <div class="todo-content">
                   <h4 class="todo-name">
                       7 Days Avg API 
@@ -223,7 +228,7 @@
                 </div>
               </li>
               <li>
-                <div class="todo-icon fui-eye"></div>
+                <div class="todo-icon fui-list-large-thumbnails"></div>
                 <div class="todo-content">
                   <h4 class="todo-name">
                      30 Days Avg API 
@@ -233,7 +238,7 @@
                 </div>
               </li>
               <li>
-                <div class="todo-icon fui-time"></div>
+                <div class="todo-icon fui-eye"></div>
                 <div class="todo-content">
                   <h4 class="todo-name">
                      Overview 
