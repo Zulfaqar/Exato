@@ -17,6 +17,8 @@ $sec = "10";
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="refresh" content="<?php echo $sec?>;URL='<?php echo $page?>'">
+        <link rel="icon" href="img/icons/png/gieERMx7T.png">
+   
         
         <title>Real Time API</title>
           <!-- Boostrap and JQuery-->
@@ -32,6 +34,7 @@ $sec = "10";
         legend: {
             enabled: false
         },
+        
         exporting: {
             enabled: false
         },

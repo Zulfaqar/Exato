@@ -3,7 +3,7 @@
 function db_connect()
 {
    //$result = mysql_connect("exato-db-instance.cwbw53vhehej.us-west-2.rds.amazonaws.com", "Zulfaqar","94025467z"); 
-    $result = mysql_connect("localhost","root","");
+   $result = mysql_connect("localhost","root","");
    if (!$result)
       return false;
    return $result;
