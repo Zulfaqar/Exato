@@ -6,6 +6,9 @@ $sec = "10";
 <!--<div style="display:none;">-->
     <?php include 'data.php';
     include 'data_prep.php';
+    include 'max_value.php';
+    include 'avg_7days.php';
+    include 'avg_30days.php';
      ?>
 <!--</div>-->
 <html lang="en">
@@ -53,7 +56,7 @@ $sec = "10";
          xAxis: {
              labels:{enabled: false},
              title:{
-                 text: 'Time',
+                 text: 'Time <br> (7days)',
                  style: {
                 color: '#bdc3c7',
                 fontWeight: 'bold'
@@ -136,20 +139,21 @@ $sec = "10";
  
    <nav class="navbar navbar-default navbar-static-top">
       <div class="container">
-        <div class="navbar-header"> 
-          <a class="navbar-brand" href="#"><span class="fui-yelp"></span> Air Pollution | Real-time API Monitor </a>
-        </div>
+        
+            <h3>Air Pollution | Real-time API Monitor</h3>
       </div>
     </nav>
 
             
 
             
-            <div class="alert alert-warning text-center container" role="alert">
+<!--            <div class="alert alert-warning text-center container" role="alert">
                 <span class="fui-alert-circle" aria-hidden="true"></span><b> Warning!</b> if you're seeing this, this site is still under constructions.
-            </div>
+            </div>-->
         
             <div class="row container-fluid">
+                
+                
                 <div class=" col-sm-3 text-center">
             <div class="todo">
             <ul>
@@ -204,17 +208,18 @@ $sec = "10";
                     <?php }?>
                 </div>
                 
-                <div class=" col-sm-3 text-left">
-            <div class="todo">
+                
+            <div class=" col-sm-3 text-left">
+                <div class="todo">
             <ul>
               <li>
                 <div class="todo-icon fui-clip"></div>
                 <div class="todo-content">
                   <h4 class="todo-name">
                       Highest API 
-                      <div><strong>35.32 µg/m³</strong></div> 
+                      <div><strong><?php echo $max['max']; ?> µg/m³</strong></div> 
                   </h4>
-                   Thursday, Feb 25, 02:27PM
+                   <?php echo $max['date']; ?>
                 </div>
               </li>
               <li>
@@ -222,9 +227,9 @@ $sec = "10";
                 <div class="todo-content">
                   <h4 class="todo-name">
                       7 Days Avg API 
-                      <div><strong>35.32 µg/m³</strong></div> 
+                      <div><strong><?php echo $avg_7days['average_value']; ?> µg/m³</strong></div> 
                   </h4>
-                   (27/11/2015 - 04/12/15)
+                   (<?php echo $avg_7days['from']; ?> - <?php echo $avg_7days['till']; ?>)
                 </div>
               </li>
               <li>
@@ -232,27 +237,21 @@ $sec = "10";
                 <div class="todo-content">
                   <h4 class="todo-name">
                      30 Days Avg API 
-                      <div><strong>35.32 µg/m³</strong></div> 
+                      <div><strong><?php echo $avg_30days['average_value']; ?> µg/m³</strong></div> 
                   </h4>
-                   (01/11/2015 - 01/12/15)
-                </div>
-              </li>
-              <li>
-                <div class="todo-icon fui-eye"></div>
-                <div class="todo-content">
-                  <h4 class="todo-name">
-                     Overview 
-                      <div><strong>0.16%</strong></div> 
-                  </h4>
-                   Slightly cleaner air from previous week
+                   (<?php echo $avg_30days['from']; ?> - <?php echo $avg_30days['till']; ?>)
                 </div>
               </li>
             </ul>
-          </div><!-- /.todo -->
-                    
-                </div>
+          </div>
+                
+            
+            </div>
+                
+                
+                
                 <div class="col-sm-6">
-                    <div id="container" style="min-width: 400px; height: 250px; margin: 0 auto"></div>
+                    <div id="container" style="min-width: auto; height: auto;"></div>
                 </div>
                 
             </div>

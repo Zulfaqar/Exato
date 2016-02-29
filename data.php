@@ -13,7 +13,9 @@ $sth = mysql_query("
                     SELECT 
                     value 
                     FROM readings 
-                    where sensor='pool_temp'
+                    WHERE sensor='pool_temp'
+AND time_stamp >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY
+AND time_stamp < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY
                     ");
 //$rows = array();
 //$rows['name'] = 'Air Quality';
@@ -26,7 +28,9 @@ $sth = mysql_query("
                     SELECT 
                     date_format(time_stamp,'%b %d, %h:%i %p') as time_stamp  
                     FROM readings 
-                    where sensor='pool_temp'
+                    WHERE sensor='pool_temp'
+AND time_stamp >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY
+AND time_stamp < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY
                     ");
 //$rows2 = array();
 //$rows2['name'] = 'Time';
