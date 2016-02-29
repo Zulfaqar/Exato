@@ -1,6 +1,6 @@
 <?php
-$con = mysql_connect("exato-db-instance.cwbw53vhehej.us-west-2.rds.amazonaws.com","Zulfaqar", "94025467z");
-//$con = mysql_connect("localhost","root", "");
+//$con = mysql_connect("exato-db-instance.cwbw53vhehej.us-west-2.rds.amazonaws.com","Zulfaqar", "94025467z");
+$con = mysql_connect("localhost","root", "");
 
 if (!$con) {
   die('Could not connect: ' . mysql_error());
@@ -14,11 +14,9 @@ $query = mysql_query("
                         round(AVG(value),2) as 'average_value',
                         date_format(NOW(),'%m/%d/%Y') AS 'from',
                         date_format(DATE_SUB(NOW(), INTERVAL 7 DAY),'%m/%d/%Y') as 'till'
-
                         FROM readings
                         WHERE sensor ='pool_temp'
-                        AND time_stamp >= curdate() - INTERVAL DAYOFWEEK(curdate())+6 DAY
-                        AND time_stamp < curdate() - INTERVAL DAYOFWEEK(curdate())-1 DAY
+                        AND time_stamp BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND NOW()
                     ");
 $avg_7days = array();
 while($row = mysql_fetch_array($query)) {
