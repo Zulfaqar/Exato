@@ -139,17 +139,14 @@ $sec = "10";
  
    <nav class="navbar navbar-default navbar-static-top">
       <div class="container">
-        
             <h3>Air Pollution | Real-time API Monitor</h3>
       </div>
-    </nav>
-
-            
-
-            
-<!--            <div class="alert alert-warning text-center container" role="alert">
-                <span class="fui-alert-circle" aria-hidden="true"></span><b> Warning!</b> if you're seeing this, this site is still under constructions.
-            </div>-->
+    </nav>  
+            <div class="alert alert-success text-center container" role="alert">
+                <span class="fui-alert-circle" aria-hidden="true"></span><b> Great News!</b> This site is already a beta!
+                <div>Fork it here via <a href="https://github.com/Zulfaqar/exato/tree/dev" <span class="fui-github"></span> </a>
+                    | Developer's <a href='https://my.linkedin.com/in/zulfaqarofficia' <span class="fui-linkedin"></span></a></div>
+            </div>
         
             <div class="row container-fluid">
                 
