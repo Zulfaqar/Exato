@@ -170,34 +170,34 @@ $sec = "10";
             </ul>
             </div>
                     
-                    <?php if($result['data']>=301){ ?>
+                    <?php if($result['data']>=301.00){ ?>
                     <div class="btn btn-block btn-lg btn-danger">
                        <h6><b><?php echo $result['data'];?> µg/m³</b> 
                             <div>Hazardous</div>
                         </h6>
                     </div>
-                    <?php } else if(($result['data']<300)&&($result['data']>201)){ ?>
+                    <?php } else if(($result['data']<300.00)&&($result['data']>=201.00)){ ?>
                     <div class="btn btn-block btn-lg btn-veryunhealthy">
                         <h6><b><?php echo $result['data'];?> µg/m³</b> 
                             <div>Very Unhealthy</div>
                         </h6>
                     </div>
                     <?php } 
-                    else if(($result['data']<200)&&($result['data']>101)){?>
+                    else if(($result['data']<=200.00)&&($result['data']>=101.00)){?>
                     <div class="btn btn-block btn-lg btn-unhealthy">
                         <h6><b><?php echo $result['data'];?> µg/m³</b> 
                             <div>Unhealthy</div>
                         </h6>
                     </div>
                     <?php } 
-                    else if(($result['data']<100)&&($result['data']>51)){?>
+                    else if(($result['data']<=100.00)&&($result['data']>=51.00)){?>
                     <div class="btn btn-block btn-lg btn-warning">
                         <h6><b><?php echo $result['data'];?> µg/m³</b> 
                             <div>Moderate</div>
                         </h6>
                     </div>
                     <?php } 
-                    else if(($result['data']<50)&&($result['data']>0)){?>
+                    else if(($result['data']<=50.00)&&($result['data']>=0.00)){?>
                     <div class="btn btn-block btn-lg btn-success">
                         
                         <h6><b><?php echo $result['data'];?> µg/m³</b> 

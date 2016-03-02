@@ -46,7 +46,7 @@ int count = 0;
 Adafruit_CC3000 cc3000 = Adafruit_CC3000(ADAFRUIT_CC3000_CS, ADAFRUIT_CC3000_IRQ, ADAFRUIT_CC3000_VBAT,SPI_CLOCK_DIV2);
                                          
 // Local server IP, port, and repository
-uint32_t ip = cc3000.IP2U32(52,36,4,187);//computers ip address
+uint32_t ip = cc3000.IP2U32(52,11,5,250);//computers ip address
 int port = 80; //webserver port 
 //String repository = "http://ec2-52-36-4-187.us-west-2.compute.amazonaws.com/";
 String repository = "http://apireg.net/";
@@ -82,12 +82,15 @@ void setup(void)
   // Connect to  WiFi to specified network
   cc3000.connectToAP(WLAN_SSID, WLAN_PASS, WLAN_SECURITY);
   lcd.setCursor(1,0);
-  lcd.println("Connected to   "); 
+  lcd.println("Connected to   ");
+  Serial.println("Connected to   "); 
   lcd.setCursor(1,1);
   lcd.println("WiFi network!  ");
+  Serial.println("WiFi network!  ");
   delay(1000); 
   // Check DHCP
   lcd.println(F("Requesting DHCP"));
+  Serial.println(F("Requesting DHCP"));
   while (!cc3000.checkDHCP())
   {
     delay(100);
@@ -113,71 +116,87 @@ void loop(void)
     {
       digitalWrite(FAN,LOW);
       lcd.setCursor(1,0);
+      
       lcd.print("API: ");
       lcd.println(voMeasured);
       lcd.print("μg/m3");
-
-      lcd.setCursor(1,1);
-      lcd.print("Good Condition");
-
+      
       Serial.print("API: ");
       Serial.println(voMeasured);
+      Serial.print("μg/m3");
+
+      lcd.setCursor(1,1);
+      lcd.print("Good");
+      Serial.print("Good");
+
     }
   if ((voMeasured>=51.00)&&(voMeasured<=100.00)) //Moderate Condition
     {
       digitalWrite(FAN,HIGH);
       lcd.setCursor(1,0);
+      
       lcd.print("API: ");
       lcd.println(voMeasured);
       lcd.print("μg/m3");
-
-      lcd.setCursor(1,1);
-      lcd.print("Moderate Air");
-
+      
       Serial.print("API: ");
       Serial.println(voMeasured);
+      Serial.print("μg/m3");
+
+      lcd.setCursor(1,1);
+      lcd.print("Moderate");
+      Serial.print("Moderate");
     }
      if ((voMeasured>=101.00)&&(voMeasured<=200.00)) // Unhealthy Condition
     {
       digitalWrite(FAN,HIGH);
       lcd.setCursor(1,0);
-      lcd.print("API: ");
+      
+     lcd.print("API: ");
       lcd.println(voMeasured);
       lcd.print("μg/m3");
-
-      lcd.setCursor(1,1);
-      lcd.print("Unhealthy Air");
-
+      
       Serial.print("API: ");
       Serial.println(voMeasured);
+      Serial.print("μg/m3");
+
+      lcd.setCursor(1,1);
+      lcd.print("Unhealthy");
+      Serial.print("Unhealthy");
     }
      if ((voMeasured>=201.00)&&(voMeasured<=300.00)) // Very Unhealthy Condition
     {
       digitalWrite(FAN,HIGH);
       lcd.setCursor(1,0);
-      lcd.print("API: ");
+      
+     lcd.print("API: ");
       lcd.println(voMeasured);
       lcd.print("μg/m3");
-
-      lcd.setCursor(1,1);
-      lcd.print("Very Unhealthy Air");
-
+      
       Serial.print("API: ");
       Serial.println(voMeasured);
+      Serial.print("μg/m3");
+
+      lcd.setCursor(1,1);
+      lcd.print("Very Unhealthy");
+      Serial.print("Very Unhealthy");
     }
      if (voMeasured>=301.00) // Hazardous Condition
     {
       digitalWrite(FAN,HIGH);
       lcd.setCursor(1,0);
-      lcd.print("API: ");
+      
+     lcd.print("API: ");
       lcd.println(voMeasured);
       lcd.print("μg/m3");
-
-      lcd.setCursor(1,1);
-      lcd.print("Hazardous Air");
-
+      
       Serial.print("API: ");
       Serial.println(voMeasured);
+      Serial.print("μg/m3");
+
+      lcd.setCursor(1,1);
+      lcd.print("Hazardous");
+      Serial.print("Hazardous");
     }
     Serial.print("Count: ");
     Serial.println(count++);

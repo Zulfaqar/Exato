@@ -11,9 +11,10 @@ mysql_select_db("exato_database", $con);
 
 $query = mysql_query("
                     SELECT 
-                        MAX(value) AS 'max',
+                        value AS 'max',
                         date_format(time_stamp,'%b %d, %Y %h:%i %p') AS daily_date
                         FROM readings
+                        ORDER BY value desc LIMIT 1
                     ");
 $max = array();
 while($row = mysql_fetch_array($query)) {
