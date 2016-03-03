@@ -10,12 +10,13 @@ mysql_select_db("exato_database", $con);
 //mysql_select_db("energy_project", $con);
 
 $query = mysql_query("
-                   SELECT
-                    ifnull(round(value,2),0.00) AS api_value,
-                    date_format(time_stamp,'%b %d, %Y %h:%i %p') AS daily_date
+                  SELECT
+                    value AS api_value,
+                    date_format(time_stamp,'%b %d, %Y %h:%i %p') AS daily_date,
+                    time_stamp
                     FROM readings
                     WHERE sensor = 'pool_temp'
-                    ORDER BY 2 DESC LIMIT 1
+                    ORDER BY 3 DESC LIMIT 1
                     ");
 $result = array();
 while($row = mysql_fetch_array($query)) {

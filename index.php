@@ -198,12 +198,10 @@ $sec = "10";
                     </div>
                     <?php } 
                     else if(($result['data']<=50.00)&&($result['data']>=0.00)){?>
-                    <div class="btn btn-block btn-lg btn-success">
-                        
+                    <div class="btn btn-block btn-lg btn-success">  
                         <h6><b><?php echo $result['data'];?> µg/m³</b> 
                             <div>Good</div>
                         </h6>
-                        
                     </div>
                     <?php }?>
                 </div>

@@ -1,4 +1,4 @@
-// This program receives an API reading from a PM2.5 Dust Sensor and sent it to a webserver using AdaFruits CC3000 WiFi Module with Arduino UNO compatibility 
+//This program receives an API reading from a PM2.5 Dust Sensor and sent it to a webserver using AdaFruits CC3000 WiFi Module with Arduino UNO compatibility 
 
 // Include required libraries
 #include <Adafruit_CC3000.h>
