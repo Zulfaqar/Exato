@@ -1,10 +1,11 @@
 <!DOCTYPE HTML>
 <?php date_default_timezone_set("Asia/Kuala_Lumpur");
 $page = $_SERVER['PHP_SELF'];
-$sec = "10";
+$sec = "60";
 ?>
 <!--<div style="display:none;">-->
-    <?php include 'data.php';
+    <?php 
+    include 'data.php';
     include 'data_prep.php';
     include 'max_value.php';
     include 'avg_7days.php';
@@ -32,7 +33,7 @@ $sec = "10";
         $(document).ready(function() {
             $('#container').highcharts({
         legend: {
-            enabled: false
+            enabled: false,
         },
         
         exporting: {
@@ -242,23 +243,11 @@ $sec = "10";
               </li>
             </ul>
           </div>
-                
-            
             </div>
-                
-                
-                
                 <div class="col-sm-6">
                     <div id="container" style="min-width: auto; height: auto;"></div>
                 </div>
-                
             </div>
-              
-  
-        
-
-        
-      
     </body>
 </html>
 

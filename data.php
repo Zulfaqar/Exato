@@ -1,4 +1,5 @@
 <?php
+
 $con = mysql_connect("exato-db-instance.cwbw53vhehej.us-west-2.rds.amazonaws.com","Zulfaqar", "94025467z");
 //$con = mysql_connect("localhost","root", "");
 
@@ -45,8 +46,10 @@ while($rrr = mysql_fetch_assoc($sth)) {
 //array_push($chart,$rows);
 //array_push($chart,$rows2);
 
+  return json_encode($chart, JSON_NUMERIC_CHECK);
 
-return json_encode($chart, JSON_NUMERIC_CHECK);
 
+    
 mysql_close($con);
 ?>
+

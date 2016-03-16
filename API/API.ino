@@ -46,7 +46,7 @@ int count = 0;
 Adafruit_CC3000 cc3000 = Adafruit_CC3000(ADAFRUIT_CC3000_CS, ADAFRUIT_CC3000_IRQ, ADAFRUIT_CC3000_VBAT,SPI_CLOCK_DIV2);
                                          
 // Local server IP, port, and repository
-uint32_t ip = cc3000.IP2U32(52,11,5,250);//computers ip address
+uint32_t ip = cc3000.IP2U32(52,89,197,87);//computers ip address
 int port = 80; //webserver port 
 //String repository = "http://ec2-52-36-4-187.us-west-2.compute.amazonaws.com/";
 String repository = "http://apireg.net/";
@@ -64,7 +64,7 @@ void setup(void)
     delay(250);
   }
   lcd.backlight();// finish with backlight on  
-
+  lcd.clear();
   lcd.setCursor(1,0);
   lcd.print("Searching for ");
   lcd.setCursor(1,1);
@@ -81,14 +81,17 @@ void setup(void)
 
   // Connect to  WiFi to specified network
   cc3000.connectToAP(WLAN_SSID, WLAN_PASS, WLAN_SECURITY);
+  lcd.clear();
   lcd.setCursor(1,0);
   lcd.println("Connected to   ");
   Serial.println("Connected to   "); 
   lcd.setCursor(1,1);
   lcd.println("WiFi network!  ");
   Serial.println("WiFi network!  ");
+  lcd.print((char)0xE4);
   delay(1000); 
   // Check DHCP
+  lcd.clear();
   lcd.println(F("Requesting DHCP"));
   Serial.println(F("Requesting DHCP"));
   while (!cc3000.checkDHCP())
@@ -114,15 +117,17 @@ void loop(void)
 
     if ((voMeasured>=0.00)&&(voMeasured<=50.00)) //Good Condition
     {
+      lcd.clear();
       digitalWrite(FAN,LOW);
       lcd.setCursor(1,0);
       
       lcd.print("API: ");
-      lcd.println(voMeasured);
-      lcd.print("μg/m3");
+      lcd.print(voMeasured);
+      lcd.print((char)0xE4);
+      lcd.print("g/m3");
       
       Serial.print("API: ");
-      Serial.println(voMeasured);
+      Serial.print(voMeasured);
       Serial.print("μg/m3");
 
       lcd.setCursor(1,1);
@@ -132,15 +137,17 @@ void loop(void)
     }
   if ((voMeasured>=51.00)&&(voMeasured<=100.00)) //Moderate Condition
     {
+      lcd.clear();
       digitalWrite(FAN,HIGH);
       lcd.setCursor(1,0);
       
       lcd.print("API: ");
-      lcd.println(voMeasured);
-      lcd.print("μg/m3");
+      lcd.print(voMeasured);
+      lcd.print((char)0xE4);
+      lcd.print("g/m3");
       
       Serial.print("API: ");
-      Serial.println(voMeasured);
+      Serial.print(voMeasured);
       Serial.print("μg/m3");
 
       lcd.setCursor(1,1);
@@ -149,15 +156,17 @@ void loop(void)
     }
      if ((voMeasured>=101.00)&&(voMeasured<=200.00)) // Unhealthy Condition
     {
+      lcd.clear();
       digitalWrite(FAN,HIGH);
       lcd.setCursor(1,0);
       
-     lcd.print("API: ");
-      lcd.println(voMeasured);
-      lcd.print("μg/m3");
+      lcd.print("API: ");
+      lcd.print(voMeasured);
+      lcd.print((char)0xE4);
+      lcd.print("g/m3");
       
       Serial.print("API: ");
-      Serial.println(voMeasured);
+      Serial.print(voMeasured);
       Serial.print("μg/m3");
 
       lcd.setCursor(1,1);
@@ -166,15 +175,17 @@ void loop(void)
     }
      if ((voMeasured>=201.00)&&(voMeasured<=300.00)) // Very Unhealthy Condition
     {
+      lcd.clear();
       digitalWrite(FAN,HIGH);
       lcd.setCursor(1,0);
       
-     lcd.print("API: ");
-      lcd.println(voMeasured);
-      lcd.print("μg/m3");
+      lcd.print("API: ");
+      lcd.print(voMeasured);
+      lcd.print((char)0xE4);
+      lcd.print("g/m3");
       
       Serial.print("API: ");
-      Serial.println(voMeasured);
+      Serial.print(voMeasured);
       Serial.print("μg/m3");
 
       lcd.setCursor(1,1);
@@ -183,15 +194,17 @@ void loop(void)
     }
      if (voMeasured>=301.00) // Hazardous Condition
     {
+      lcd.clear();
       digitalWrite(FAN,HIGH);
       lcd.setCursor(1,0);
       
-     lcd.print("API: ");
-      lcd.println(voMeasured);
-      lcd.print("μg/m3");
+      lcd.print("API: ");
+      lcd.print(voMeasured);
+      lcd.print((char)0xE4);
+      lcd.print("g/m3");
       
       Serial.print("API: ");
-      Serial.println(voMeasured);
+      Serial.print(voMeasured);
       Serial.print("μg/m3");
 
       lcd.setCursor(1,1);
@@ -200,11 +213,9 @@ void loop(void)
     }
     Serial.print("Count: ");
     Serial.println(count++);
-
-     
-    
     //Send request
-    String request = "GET "+ repository + "sensor.php?temp=" + voMeasured + "&hum=" + calcVoltage + " HTTP/1.0";
+    String request = "GET "+ repository + "sensor.php?temp="+voMeasured+"&hum=" + calcVoltage + " HTTP/1.0";
+    // call send_request() class
     send_request(request);
     Serial.println("");
     Serial.print("request: ");
@@ -212,7 +223,7 @@ void loop(void)
     Serial.println("");
    
     // Update every 30 seconds
-    delay(30000);
+    delay(60000);
      {
     // when characters arrive over the serial port...
     if (Serial.available()) {
@@ -248,7 +259,6 @@ void send_request (String request) {
 
     while (client.connected()) {
       while (client.available()) {
-
       // Read answer
       char c = client.read();
       }
