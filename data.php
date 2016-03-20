@@ -8,48 +8,29 @@ if (!$con) {
 }
 
 mysql_select_db("exato_database", $con);
-//mysql_select_db("energy_project", $con);
+
 $chart = array();
 $sth = mysql_query("
-                    SELECT 
-                    value 
-                    FROM readings 
-                    WHERE sensor='pool_temp'
+SELECT 
+value 
+FROM readings 
+WHERE sensor='pool_temp'
  AND time_stamp BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND NOW()
-                    ");
-//$rows = array();
-//$rows['name'] = 'Air Quality';
-
+");
 while($r = mysql_fetch_array($sth)) {
-   $chart['api'][] = $r['value'];
+$chart['api'][] = $r['value'];
 }
-
 $sth = mysql_query("
-                    SELECT 
-                    date_format(time_stamp,'%b %d, %h:%i %p') as time_stamp  
-                    FROM readings 
-                    WHERE sensor='pool_temp'
- AND time_stamp BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND NOW()
-                    ");
-//$rows2 = array();
-//$rows2['name'] = 'Time';
+SELECT 
+date_format(time_stamp,'%b %d, %h:%i %p') as time_stamp  
+FROM readings 
+ WHERE sensor='pool_temp'
+AND time_stamp BETWEEN DATE_SUB(NOW(), INTERVAL 7 DAY) AND NOW()
+");
 while($rrr = mysql_fetch_assoc($sth)) {
-    $chart['api_date'][] = $rrr['time_stamp'];
+$chart['api_date'][] = $rrr['time_stamp'];
 }
-
-
-
-
-
-
-//$chart = array();
-//array_push($chart,$rows);
-//array_push($chart,$rows2);
-
   return json_encode($chart, JSON_NUMERIC_CHECK);
-
-
-    
 mysql_close($con);
 ?>
 
